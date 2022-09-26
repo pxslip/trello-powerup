@@ -1,0 +1,39 @@
+{
+  "name": "@ushmm/trello-powerups",
+  "version": "1.0.0",
+  "description": "Trello powerups for USHMM",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ushmm/trello-powerups.git"
+  },
+  "keywords": [
+    "trello",
+    "powerups",
+    "automation"
+  ],
+  "author": "Will Kruse <hkruse@ushmm.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ushmm/trello-powerups/issues"
+  },
+  "homepage": "https://github.com/ushmm/trello-powerups#readme",
+  "prettier": "@ushmm/prettier-config",
+  "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@ushmm/eslint-config": "^1.0.2",
+    "@ushmm/prettier-config": "^1.0.0",
+    "eslint": "^8.24.0",
+    "nuxt": "3.0.0-rc.11",
+    "typescript": "^4.8.3"
+  }
+}

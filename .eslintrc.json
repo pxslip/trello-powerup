@@ -1,0 +1,4 @@
+{
+  "extends": ["@ushmm", "@nuxtjs/eslint-config-typescript", "prettier"],
+  "ignorePatterns": ["typings/**/*.d.ts"]
+}

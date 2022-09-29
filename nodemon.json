@@ -1,0 +1,10 @@
+{
+  "watch": [
+    "components/",
+    "composables/",
+    "layouts/",
+    "pages/",
+    "plugins/"
+  ],
+  "ext": "vue,ts"
+}

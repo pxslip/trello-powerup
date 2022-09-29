@@ -1,4 +1,3 @@
 <template>
-  <h1>Index Page</h1>
+  <h1>USHMM Trello Maintenance PowerUp</h1>
 </template>
-<script setup></script>

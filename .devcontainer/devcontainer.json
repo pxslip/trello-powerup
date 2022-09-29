@@ -10,12 +10,14 @@
     "vscode": {
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
-        "dbaeumer.vscode-eslint",
-        "editorconfig.editorconfig",
-        "github.vscode-pull-request-github",
-        "esbenp.prettier-vscode",
-        "mutantdino.resourcemonitor"
-      ]
+		"dbaeumer.vscode-eslint",
+		"editorconfig.editorconfig",
+		"github.vscode-pull-request-github",
+		"esbenp.prettier-vscode",
+		"mutantdino.resourcemonitor",
+		"bradlc.vscode-tailwindcss",
+		"Vue.volar"
+	]
     }
   },
 

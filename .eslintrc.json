@@ -1,4 +1,5 @@
 {
   "extends": ["@ushmm", "@nuxtjs/eslint-config-typescript", "prettier"],
-  "ignorePatterns": ["typings/**/*.d.ts"]
+  "ignorePatterns": ["typings/**/*.d.ts"],
+  "globals": { "TrelloPowerUp": "readonly" }
 }

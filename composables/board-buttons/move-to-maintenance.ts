@@ -1,11 +1,11 @@
-import { useShowMove } from '../state';
+import { useSetting } from '../state';
 
 import { Trello } from '~~/typings/trello';
 
 export default async function moveToMaintenance(
   _t: Trello.PowerUp.IFrame
 ): Promise<Trello.PowerUp.BoardButtonCallback> | null {
-  const show = await useShowMove();
+  const show = await useSetting('showMove');
   return show
     ? {
         text: 'Move to Maintenance',

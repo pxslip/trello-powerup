@@ -1,6 +1,6 @@
 import useTrello from './useTrello';
 
-interface State {
+export interface State {
   showMove: boolean;
   showReturn: boolean;
   labelMap: object;
@@ -12,35 +12,16 @@ const defaults: State = {
   labelMap: {},
 };
 
-export const useSettings = () => {
-  return useAsyncData(
-    'settings',
-    async () => {
-      const t = useTrello();
-      const settings = (await t.get('board', 'shared', 'ushmm_maint', defaults)) as State;
-      useState('showMove');
-      return settings;
-    },
-    { server: false }
-  );
+export const useSettings = async () => {
+  const t = useTrello();
+  const settings = (await t.get('board', 'shared', 'ushmm_maint', defaults)) as State;
+  return ref(settings);
 };
 
-export const useShowMove = () => {
-  return useAsyncData(
-    'showMove',
-    async () => {
-      const { data, error } = await useSettings();
-      if (!error.value) {
-        const { showMove } = data.value;
-        return ref(showMove);
-      } else {
-        const t = useTrello();
-        t.alert({
-          message: `Woah, that's a negative ghost rider. Something just broke`,
-        });
-        console.error(error);
-      }
-    },
-    { server: false }
-  );
+export const useSetting = async (setting: keyof State | undefined) => {
+  const settings = await useSettings();
+  if (!setting) {
+    return settings;
+  }
+  return ref(settings[setting]);
 };

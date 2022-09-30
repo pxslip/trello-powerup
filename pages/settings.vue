@@ -7,7 +7,11 @@
         label="Show Move to Maintenance Button"
         setting="showMove"
       ></SettingsToggleSetting>
+
+      <SettingsToggleSetting
+        label="Show Return From Maintenance Button"
+        setting="showReturn"
+      ></SettingsToggleSetting>
     </section>
   </section>
 </template>
-<script lang="ts" setup></script>

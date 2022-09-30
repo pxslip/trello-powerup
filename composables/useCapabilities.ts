@@ -7,7 +7,7 @@ export default function useCapabilities(): Trello.PowerUp.CapabilityHandlers {
     'show-settings'(t) {
       return t.modal({
         title: 'Maintenance PowerUp Settings',
-        url: '/settings',
+        url: './settings',
       });
     },
   };

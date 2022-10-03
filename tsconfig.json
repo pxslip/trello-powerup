@@ -1,4 +1,7 @@
 {
-  // https://v3.nuxtjs.org/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "compilerOptions": {
+    "sourceMap": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue", "typings/**/*.d.ts"]
 }

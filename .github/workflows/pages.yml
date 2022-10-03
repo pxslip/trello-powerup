@@ -16,8 +16,8 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write
-  packages: write
+  id-token: read
+  packages: read
 
 # Allow one concurrent deployment
 concurrency:
@@ -58,23 +58,20 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            .output
-            .nuxt
-          key: ${{ runner.os }}-nuxt-build-${{ hashFiles('.output') }}
+            .dist
+          key: ${{ runner.os }}-nuxt-build-${{ hashFiles('.dist') }}
           restore-keys: |
             ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Static HTML export with Nuxt
-        env:
-          NUXT_APP_BASE_URL: /trello-powerups/
-        run: ${{ steps.detect-package-manager.outputs.manager }} run generate
+        run: npm ci
+      - name: Static HTML export
+        run: ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./.output/public
+          path: ./.dist
 
   # Deployment job
   deploy:

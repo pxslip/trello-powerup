@@ -1,5 +1,6 @@
 export namespace Events {
-  interface InputEvent extends Event {
+  declare var InputEvent: {
+    prototype: Event;
     target: HTMLInputElement;
-  }
+  };
 }

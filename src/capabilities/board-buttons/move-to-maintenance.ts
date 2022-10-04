@@ -1,6 +1,6 @@
 import { useSetting } from '../state';
 
-import { Trello } from '~~/typings/trello';
+import type { Trello } from '~~/typings/trello';
 
 export default async function moveToMaintenance(
   _t: Trello.PowerUp.IFrame

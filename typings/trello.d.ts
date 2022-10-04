@@ -8,7 +8,10 @@ export namespace Trello {
     CallbackCache: Callback.Cache;
     PostMessageIO: any; // PostMessageIO
     iframe(options?: PowerUp.IFrameOptions): PowerUp.IFrame;
-    initialize(handlers: PowerUp.CapabilityHandlers, options?: PowerUp.PluginOptions): PowerUp.Plugin | PowerUp.IFrame;
+    initialize(
+      handlers: PowerUp.CapabilityHandlers,
+      options?: PowerUp.PluginOptions
+    ): PowerUp.Plugin | PowerUp.IFrame;
     restApiError(): any;
     util: PowerUp.Util;
   }
@@ -28,7 +31,11 @@ export namespace Trello {
     }
 
     interface Cache {
-      callback(t: PowerUp.IFrame, options: CacheOptions, serializeResult: SerializeResult): PromiseLike<any>;
+      callback(
+        t: PowerUp.IFrame,
+        options: CacheOptions,
+        serializeResult: SerializeResult
+      ): PromiseLike<any>;
       serialize(fx: (t: PowerUp.IFrame, args: any) => any): SerializeOutput;
       reset(): void;
     }
@@ -209,7 +216,13 @@ export namespace Trello {
     type ListFields = keyof List;
     type MemberFields = keyof Member;
 
-    type Condition = 'admin' | 'always' | 'edit' | 'readonly' | 'signedIn' | 'signedOut';
+    type Condition =
+      | 'admin'
+      | 'always'
+      | 'edit'
+      | 'readonly'
+      | 'signedIn'
+      | 'signedOut';
 
     interface BoardButtonBase {
       icon: {
@@ -293,11 +306,17 @@ export namespace Trello {
         }
       ) => PromiseLike<(AttachmentSection | LazyAttachmentSection)[]>;
       'attachment-thumbnail'?: () => void;
-      'board-buttons'?: (t: PowerUp.IFrame) => PromiseLike<(BoardButtonUrl | BoardButtonCallback)[]>;
+      'board-buttons'?: (
+        t: PowerUp.IFrame
+      ) => PromiseLike<(BoardButtonUrl | BoardButtonCallback)[]>;
       'card-back-section'?: (t: PowerUp.IFrame) => PromiseLike<CardBackSection>;
-      'card-badges'?: (t: PowerUp.IFrame) => PromiseLike<(CardBadgeDynamic | CardBadge)[]>;
+      'card-badges'?: (
+        t: PowerUp.IFrame
+      ) => PromiseLike<(CardBadgeDynamic | CardBadge)[]>;
       'card-buttons'?: (t: PowerUp.IFrame) => PromiseLike<CardButton[]>;
-      'card-detail-badges'?: (t: PowerUp.IFrame) => PromiseLike<(CardDetailBadgeDynamic | CardDetailBadge)[]>;
+      'card-detail-badges'?: (
+        t: PowerUp.IFrame
+      ) => PromiseLike<(CardDetailBadgeDynamic | CardDetailBadge)[]>;
       'card-from-url'?: () => void;
       'format-url'?: () => void;
       'list-actions'?: (t: PowerUp.IFrame) => PromiseLike<ListAction[]>;
@@ -428,7 +447,10 @@ export namespace Trello {
         sha256Digest(): any;
       };
 
-      initLocalizer(locale: string, options: LocalizerOptions): PromiseLike<void>;
+      initLocalizer(
+        locale: string,
+        options: LocalizerOptions
+      ): PromiseLike<void>;
       makeErrorEnum(): Error;
       relativeUrl(url: string): string;
     }
@@ -436,8 +458,18 @@ export namespace Trello {
     interface AnonymousHostHandlers {
       requestWithContext(command: string, options: any): PromiseLike<any>;
       getAll(): PromiseLike<any>;
-      get(scope: Scope | string, visibility: Visibility, key?: string, defaultValue?: any): PromiseLike<any>;
-      set(scope: Scope | string, visibility: Visibility, key: string, defaultValue?: any): PromiseLike<void>;
+      get(
+        scope: Scope | string,
+        visibility: Visibility,
+        key?: string,
+        defaultValue?: any
+      ): PromiseLike<any>;
+      set(
+        scope: Scope | string,
+        visibility: Visibility,
+        key: string,
+        defaultValue?: any
+      ): PromiseLike<void>;
       set(
         scope: Scope | string,
         visibility: Visibility,
@@ -445,8 +477,16 @@ export namespace Trello {
           [key: string]: any;
         }
       ): PromiseLike<void>;
-      remove(scope: Scope | string, visibility: Visibility, key: string): PromiseLike<void>;
-      remove(scope: Scope | string, visibility: Visibility, entries: string[]): PromiseLike<void>;
+      remove(
+        scope: Scope | string,
+        visibility: Visibility,
+        key: string
+      ): PromiseLike<void>;
+      remove(
+        scope: Scope | string,
+        visibility: Visibility,
+        entries: string[]
+      ): PromiseLike<void>;
       safe(html: string): string;
       localizeKey(
         key: string,
@@ -460,7 +500,9 @@ export namespace Trello {
       cards(...fields: ['all'] | CardFields[]): PromiseLike<Card[]>;
       lists(...fields: ['all'] | ListFields[]): PromiseLike<List[]>;
       member(...fields: ['all'] | MemberFields[]): PromiseLike<Member>;
-      organization(...fields: ['all'] | OrganizationFields[]): PromiseLike<Organization>;
+      organization(
+        ...fields: ['all'] | OrganizationFields[]
+      ): PromiseLike<Organization>;
     }
 
     interface Context {
@@ -487,7 +529,11 @@ export namespace Trello {
       navigate(options: { url: string }): any;
       showCard(idCard: string): PromiseLike<void>;
       hideCard(): PromiseLike<void>;
-      alert(options: { message: string; duration?: number; display?: AlertDisplay }): PromiseLike<void>;
+      alert(options: {
+        message: string;
+        duration?: number;
+        display?: AlertDisplay;
+      }): PromiseLike<void>;
       hideAlert(): PromiseLike<void>;
       popup(
         options:
@@ -498,7 +544,11 @@ export namespace Trello {
           | PopupConfirmOptions
           | PopupConfirmWithCancelOptions
       ): PromiseLike<void>;
-      overlay(options: { url: string; args: { [key: string]: any }; inset: unknown }): PromiseLike<void>;
+      overlay(options: {
+        url: string;
+        args: { [key: string]: any };
+        inset: unknown;
+      }): PromiseLike<void>;
       boardBar(options: {
         url: string;
         args?: { [key: string]: any };
@@ -560,6 +610,8 @@ export namespace Trello {
       context?: string;
       secret?: string;
       helpfulStacks?: boolean;
+      appKey?: string;
+      appName?: string;
     }
 
     interface IFrame extends HostHandlers {
@@ -573,7 +625,7 @@ export namespace Trello {
       request(command: string, options: any): PromiseLike<any>;
       render(fxRender: () => void): any;
       initApi(): void;
-      getRestApi(): unknown;
+      getRestApi(): RestApiClient;
       initSentry(): void;
     }
 
@@ -602,6 +654,49 @@ export namespace Trello {
       request(command: string, options: any): PromiseLike<any>; //  // return PostMessageIO.request, whatever that is
       init(): any; // return an instance of PostMessageIO
       NotHandled(): any; // return PostMessageIO.NotHandled, whatever that is
+    }
+
+    interface RestApiClientAuthorizeOptions {
+      /**
+       * How long should the token be valid for. Default is "never"
+       */
+      expiration?: '1hour' | '1day' | '30days' | 'never';
+      /**
+       * What scope does the token need? Default is "read"
+       */
+      scope?:
+        | 'read'
+        | 'write'
+        | 'account'
+        | 'read,write'
+        | 'read,account'
+        | 'write,account'
+        | 'read,write,account';
+      /**
+       * The URL to redirect to at the end of the auth flow.
+       * You generally don't want to change this.
+       * We also recommend that you specify the origins that your application will redirect to when completing authorization.
+       */
+      return_url?: string;
+    }
+
+    interface RestApiClient {
+      /**
+       * Returns if the current user is authenticated to use the API
+       */
+      isAuthorized(): Promise<boolean>;
+      /**
+       * start the rest api auth flow if needed
+       */
+      authorize(options?: RestApiClientAuthorizeOptions): Promise<string>;
+      /**
+       * Get the currently authorized token if available, null if not
+       */
+      getToken(): Promise<string | null>;
+      /**
+       * Clear the current token
+       */
+      clearTokean(): Promise<void>;
     }
   }
 }

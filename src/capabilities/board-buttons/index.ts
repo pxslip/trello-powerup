@@ -1,5 +1,5 @@
 import moveToMaintenance from './move-to-maintenance';
-import { Trello } from '../../../typings/trello';
+import type { Trello } from '../../../typings/trello';
 
 export default function (
   t: Trello.PowerUp.IFrame

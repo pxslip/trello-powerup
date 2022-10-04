@@ -6,8 +6,6 @@
 </template>
 
 <script lang="ts" setup>
-import { Events } from '../../typings/events';
-
 const props = defineProps<{
   label: string;
   modelValue: boolean;
@@ -15,7 +13,7 @@ const props = defineProps<{
 
 const emit = defineEmits(['update:modelValue']);
 
-function toggle(payload: Events.InputEvent) {
-  emit('update:modelValue', payload.target?.value);
+function toggle(payload: Event) {
+  emit('update:modelValue', (payload.target as HTMLInputElement)?.value);
 }
 </script>

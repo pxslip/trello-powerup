@@ -1,6 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "compilerOptions": {
+    "declaration": false,
     "sourceMap": true
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "typings/**/*.d.ts"]

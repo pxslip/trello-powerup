@@ -1,6 +1,6 @@
 import boardButtons from './board-buttons';
 
-import { Trello } from '../../typings/trello';
+import type { Trello } from '../../typings/trello';
 
 export default function capabilities() {
   const capabilities = {

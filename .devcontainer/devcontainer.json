@@ -16,7 +16,8 @@
 		"esbenp.prettier-vscode",
 		"mutantdino.resourcemonitor",
 		"bradlc.vscode-tailwindcss",
-		"Vue.volar"
+		"Vue.volar",
+		"redhat.vscode-yaml"
 	]
     }
   },

@@ -16,7 +16,6 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write
   packages: read
 
 # Allow one concurrent deployment
@@ -31,6 +30,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Fix npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" >> .npmrc
       - name: Detect package manager
         id: detect-package-manager
         run: |

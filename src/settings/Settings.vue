@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { initState } from '../state';
-import SettingsToggle from './components/SettingsToggle.vue';
+import SettingsToggle from '../components/SettingsToggle.vue';
 import { inject, reactive } from 'vue';
 import type { Trello } from '../../typings/trello';
 

@@ -1,14 +1,15 @@
 import moveToMaintenance from './move-to-maintenance';
 import type { Trello } from '../../../typings/trello';
 
-export default function (
+export default async function (
   t: Trello.PowerUp.IFrame
-): PromiseLike<
+): Promise<
   (Trello.PowerUp.BoardButtonCallback | Trello.PowerUp.BoardButtonUrl)[]
 > {
-  return new Promise((resolve) => {
-    Promise.all([moveToMaintenance(t)]).then((buttons) =>
-      resolve(buttons.filter((button) => button !== null))
-    );
-  });
+  const buttons = [];
+  const mtmBtn = await moveToMaintenance(t);
+  if (mtmBtn !== null) {
+    buttons.push(mtmBtn);
+  }
+  return buttons;
 }

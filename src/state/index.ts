@@ -47,8 +47,8 @@ class State implements IState {
   }
 
   async initialize() {
-    const settings = await this.#trello.getAll();
-    if (settings) {
+    const settings: { board: { shared: IState } } = await this.#trello.getAll();
+    if (settings?.board?.shared) {
       const {
         board: { shared },
       }: { board: { shared: IState } } = settings;

@@ -1,8 +1,13 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "declaration": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "typings/*": ["typings/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "typings/**/*.d.ts"]
 }

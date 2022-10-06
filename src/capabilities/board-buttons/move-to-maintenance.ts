@@ -15,7 +15,7 @@ export default async function moveToMaintenance(
         callback(t: Trello.PowerUp.IFrame) {
           return t.modal({
             title: 'Test',
-            url: './second',
+            url: './settings.html',
           });
         },
       }

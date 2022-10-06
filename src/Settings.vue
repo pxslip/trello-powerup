@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { initState } from '../state';
-import SettingsToggle from '../components/SettingsToggle.vue';
+import { initState } from '@/state';
+import SettingsToggle from '@/components/SettingsToggle.vue';
 import { inject, reactive } from 'vue';
-import type { Trello } from '../../typings/trello';
+import type { Trello } from 'typings/trello';
 
 const trello = inject('trello') as Trello.PowerUp.IFrame;
 const state = reactive(await initState(trello));

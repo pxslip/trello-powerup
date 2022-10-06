@@ -1,18 +1,26 @@
-import { resolve } from 'node:path';
+import path, { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
+const publicPath = resolve(__dirname, 'public');
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/trello-powerups/',
-  root: './src/',
+  root: 'public/',
   build: {
+    emptyOutDir: true,
+    outDir: '../dist',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'src', 'index.html'),
-        settings: resolve(__dirname, 'src', 'settings', 'settings.html'),
+        main: resolve(publicPath, 'index.html'),
+        settings: resolve(publicPath, 'settings.html'),
       },
     },
   },
   plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 });

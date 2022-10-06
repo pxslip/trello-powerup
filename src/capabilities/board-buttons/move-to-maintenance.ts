@@ -1,5 +1,5 @@
-import { initState } from '../../state';
-import type { Trello } from '../../../typings/trello';
+import { initState } from '@/state';
+import type { Trello } from 'typings/trello';
 
 export default async function moveToMaintenance(
   trello: Trello.PowerUp.IFrame

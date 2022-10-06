@@ -47,12 +47,15 @@ class State implements IState {
   }
 
   async initialize() {
-    const {
-      board: { shared },
-    }: { board: { shared: IState } } = await this.#trello.getAll();
-    this.#showMove = shared.showMove;
-    this.#showReturn = shared.showReturn;
-    this.#labelMap = shared.labelMap;
+    const settings = await this.#trello.getAll();
+    if (settings) {
+      const {
+        board: { shared },
+      }: { board: { shared: IState } } = settings;
+      this.#showMove = shared.showMove;
+      this.#showReturn = shared.showReturn;
+      this.#labelMap = shared.labelMap;
+    }
   }
 }
 

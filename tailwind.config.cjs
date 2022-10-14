@@ -1,5 +1,8 @@
 module.exports = {
   content: ['index.html', './src/**/*.{js,jsx,ts,tsx,vue,html}'],
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {},
     colors: {
@@ -134,5 +137,8 @@ module.exports = {
       'light-gray-900': '#838C91',
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+  ],
 };

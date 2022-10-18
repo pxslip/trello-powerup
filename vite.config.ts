@@ -11,15 +11,15 @@ export default defineConfig({
     emptyOutDir: true,
   },
   plugins: [vue(), createMpaPlugin({
-      pages: [
-        { name: 'main', filename: 'index.html', entry: '/src/main.ts' },
-        {
-          name: 'settings',
-          filename: 'settings.html',
-          entry: '/src/settings.ts',
-        },
-      ],
-    }),],
+    pages: [
+      { name: 'main', filename: 'index.html', entry: '/src/main.ts' },
+      {
+        name: 'settings',
+        filename: 'settings.html',
+        entry: '/src/pages/settings.ts',
+      },
+    ],
+  }),],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

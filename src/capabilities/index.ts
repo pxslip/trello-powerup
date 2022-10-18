@@ -1,4 +1,5 @@
 import boardButtons from './board-buttons';
+import listActions from './list-actions';
 
 import type { Trello } from '../../typings/trello';
 
@@ -11,6 +12,7 @@ export default function capabilities(): Trello.PowerUp.CapabilityHandlers {
         url: './settings.html',
       });
     },
+    'list-actions': (t: Trello.PowerUp.IFrame) => listActions(t),
   };
   return capabilities;
 }

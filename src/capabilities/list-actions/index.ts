@@ -1,12 +1,14 @@
 import type { Trello } from '../../../typings/trello';
-import sendHome from './send-home';
+import sendHomeDone from './send-home-done';
 
 export default async function (
   t: Trello.PowerUp.IFrame
 ): Promise<
-  (Trello.PowerUp.BoardButtonCallback | Trello.PowerUp.BoardButtonUrl)[]
+  Trello.PowerUp.ListAction[]
 > {
   const actions = [];
-  actions.push(sendHome(t));
-  return actions;
+  actions.push(sendHomeDone(t));
+  return new Promise((resolve, reject) => {
+    resolve(actions);
+  });
 }

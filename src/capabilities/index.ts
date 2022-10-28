@@ -12,7 +12,7 @@ export default function capabilities(): Trello.PowerUp.CapabilityHandlers {
         url: './settings.html',
       });
     },
-    'list-actions': (t: Trello.PowerUp.IFrame) => listActions(t),
+    'list-actions'(t: Trello.PowerUp.IFrame){ return listActions(t)},
   };
   return capabilities;
 }

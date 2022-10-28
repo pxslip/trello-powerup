@@ -7,11 +7,8 @@ const handler = (trello: Trello.PowerUp.IFrame) => {
 
 export default async function moveToMaintenance(
   trello: Trello.PowerUp.IFrame
-): Promise<Trello.PowerUp.BoardButtonCallback | null> {
-  const state = await loadState(trello);
-  console.log(state);
-  return state.showMove
-    ? {
+): Promise<Trello.PowerUp.BoardButtonCallback> {
+  return {
         text: 'Move to Maintenance',
         icon: {
           dark: '',
@@ -19,10 +16,10 @@ export default async function moveToMaintenance(
         },
         callback(t: Trello.PowerUp.IFrame) {
           return t.modal({
-            title: 'Test',
+            title: 'Move Cards to Maintenance Board',
             url: './move-to-maintenance.html',
+            height: 600,
           });
         },
-      }
-    : null;
+    };
 }

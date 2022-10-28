@@ -18,6 +18,11 @@ export default defineConfig({
         filename: 'settings.html',
         entry: '/src/pages/settings.ts',
       },
+      {
+        name: 'move-to-maintenance',
+        filename: 'move-to-maintenance.html',
+        entry: '/src/pages/move-to-maintenance.ts',
+      },
     ],
   }),],
   resolve: {

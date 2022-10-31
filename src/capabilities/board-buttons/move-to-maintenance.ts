@@ -1,9 +1,4 @@
-import {loadState} from '@/state';
 import type { Trello } from 'typings/trello';
-
-const handler = (trello: Trello.PowerUp.IFrame) => {
-  // find all cards in the list named Backlog
-};
 
 export default async function moveToMaintenance(
   trello: Trello.PowerUp.IFrame

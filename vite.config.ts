@@ -23,6 +23,11 @@ export default defineConfig({
         filename: 'move-to-maintenance.html',
         entry: '/src/pages/move-to-maintenance.ts',
       },
+      {
+        name: 'authorize',
+        filename: 'authorize.html',
+        entry: '/src/pages/authorize.ts',
+      }
     ],
   }),],
   resolve: {

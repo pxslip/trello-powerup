@@ -1,9 +1,10 @@
+import type { Trello } from "typings/trello";
 /**
  * Access the trello REST Api via methods here
  */
 
 export const beginAuthFlow = async (trello: Trello.PowerUp.IFrame) => {
-  await trello.getRestApi().authorize({ scope: 'read,write' });
+  return await trello.getRestApi().authorize({ scope: 'read,write' });
 };
 
 export default class Api {
@@ -13,6 +14,7 @@ export default class Api {
   _board: Board | null = null;
   _list: List | null = null;
   _card: Card | null = null;
+
   constructor(key: string, token: string) {
     this.key = key;
     this.token = token;
@@ -50,7 +52,7 @@ export default class Api {
 class ApiGroup {
   baseUrl = 'https://api.trello.com/1/';
   authParams: URLSearchParams;
-  
+
   constructor(key: string, token: string) {
     this.authParams = new URLSearchParams({ key, token });
   }
@@ -80,7 +82,7 @@ export class Member extends ApiGroup {
 }
 
 export class Board extends ApiGroup {
-  async lists(id: string) {
+  async lists(id: string): Promise<Trello.PowerUp.List[] | void> {
     const searchParams = new URLSearchParams(this.authParams);
     searchParams.append('filter', 'open');
     searchParams.append('fields', 'id,name');
@@ -101,12 +103,13 @@ export class List extends ApiGroup {
     }
   }
 
-  async create(name: string, idBoard: string) {
+  async create(name: string, idBoard: string, position: string | number = 'bottom') {
     const searchParams = new URLSearchParams(this.authParams);
     searchParams.append('name', name);
     searchParams.append('idBoard', idBoard);
+    searchParams.append('pos', position);
     const url = this.generateUrl(`lists`, searchParams);
-    const resp = await fetch(url, {method: 'POST'});
+    const resp = await fetch(url, { method: 'POST' });
     return resp;
   }
 }
@@ -124,10 +127,10 @@ export class Card extends ApiGroup {
     }
     const searchParams = new URLSearchParams(card);
     const url = this.generateUrl(`cards/${id}`, searchParams);
-    const resp = await this.fetch(url, {method: 'PUT'});
+    const resp = await this.fetch(url, { method: 'PUT' });
     return resp;
   }
-  
+
   async addLabel(id: string, labelId: string) {
     try {
       const searchParams = new URLSearchParams(this.authParams);

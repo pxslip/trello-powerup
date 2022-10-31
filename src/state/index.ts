@@ -2,6 +2,7 @@ import { computed, reactive } from 'vue';
 import type { Trello } from '../../typings/trello';
 import capabilities from '../capabilities';
 import appKey from './key';
+import Api from './trello';
 
 export interface LabelMapItem {
   labelId: string;
@@ -63,6 +64,31 @@ export const apiSettings = {
   appKey,
   appName: 'USHMM PowerUps',
 };
+let api: Api;
+export async function getApi(trello: Trello.PowerUp.IFrame) {
+  const card = await trello.card('id');
+  if (!api) {
+    let authorized = await trello.getRestApi().isAuthorized();
+    if (!authorized) {
+      // assuming the modal only returns once the promise is resolved...
+      return await trello.modal({
+        url: './authorize.html',
+        title: 'Authorize USHMM Maintenance PowerUp',
+        args: {
+          cardId: card.id
+        }
+      });
+    } else {
+      const token = await trello.getRestApi().getToken();
+      if (token) {
+        return new Api(appKey, token);
+      } else {
+        throw new Error('Token not set when authorizing the Rest API');
+      }
+    }
+  }
+  return api;
+}
 
 export function initializeTrello(global: Window) {
   return global.TrelloPowerUp.initialize(capabilities(), apiSettings);

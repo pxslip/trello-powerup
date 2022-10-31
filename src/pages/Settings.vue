@@ -4,29 +4,31 @@
     <div v-if="authorized === undefined">{{ msg }}</div>
     <div v-else-if="authorized">
       <h2>Label Map (Used by Maintenance Board to send cards home)</h2>
-      <div class="grid grid-cols-2 gap-2">
-        <h3>Label</h3>
-        <h3>Destination Board</h3>
-        <template v-for="item in labelMap">
-          <select v-model="item.labelId" aria-label="Label">
+      <div class="flex flex-row gap-2">
+        <h3 class="grow">Label</h3>
+        <h3 class="grow">Destination Board</h3>
+        
+      </div>
+        <div class="flex flex-row gap-2 mb-2" v-for="(item,index) in labelMap">
+          <select class="grow mb-0" v-model="item.labelId" aria-label="Label">
             <option v-for="label in labels" :value="label.id">
               {{ label.name }}
               <template v-if="label.color">({{ label.color }})</template>
             </option>
           </select>
-          <select v-model="item.boardId" aria-label="Destination Board">
+          <select class="grow mb-0" v-model="item.boardId" aria-label="Destination Board">
             <option v-for="board in boards" :value="board.id">
               {{ board.name }}
             </option>
           </select>
-        </template>
-      </div>
+          <button class="shrink m-0" aria-label="Remove" @click="removeRow(index)">X</button>
+        </div>
       <button class="block w-10/12 mx-auto" @click="addLabelRow">Add Mapping</button>
-      <button class="absolute bottom-2 left-2 w-5/12 mod-primary" @click="store(trello)">Save</button>
+      <button class="absolute bottom-2 left-2 w-5/12 mod-primary" @click="save">Save</button>
       <button class="absolute bottom-2 right-2 w-5/12" @click="trello.closeModal()">Cancel</button>
     </div>
     <div v-else-if="!authorized">
-      <button class="w-full" type="button" @click="beginAuthFlow">Authorize</button>
+      <button class="w-full" type="button" @click="beginAuthFlow(trello)">Authorize</button>
     </div>
   </div>
 </template>
@@ -57,8 +59,10 @@ const boards = ref<{id: string, name: string}[]>([]);
       const token = await trello.getRestApi().getToken();
       const api = new Api(key, token);
       // load the list of boards this member has access to
-      if (state.labelMap) {
+      if (state.labelMap && Array.isArray(state.labelMap)) {
         labelMap.value = state.labelMap;
+      } else {
+        state.labelMap = labelMap.value;
       }
       
       const member = await trello.member('id');
@@ -76,6 +80,15 @@ const boards = ref<{id: string, name: string}[]>([]);
 
 const addLabelRow = () => {
   labelMap.value.push({labelId: '', boardId: ''});
+}
+
+const removeRow = (index: number) => {
+  labelMap.value.splice(index, 1);
+}
+
+const save = async () => {
+  await store(trello);
+  trello.closeModal();
 }
 </script>
 
